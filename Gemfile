@@ -12,14 +12,21 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
-
 group :development, :test do
   gem 'byebug'
+  gem 'rspec-rails', '~> 3.4', '>= 3.4.2'
+  gem 'guard-rspec', '~> 4.6', '>= 4.6.4'
+	gem 'factory_girl_rails', '~> 4.7'
 end
 
+group :test do
+	gem 'capybara', '~> 2.7', '>= 2.7.1'
+end
+
+
 group :development do
-  gem 'web-console', '~> 2.0'
-  gem 'spring'
+  gem 'spring', '~> 1.7', '>= 1.7.1'
+  gem 'better_errors', git: 'https://github.com/manafire/better_errors.git', branch: 'allow_domain'
 end
 
 group :production do
