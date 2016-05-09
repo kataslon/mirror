@@ -1,5 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe Opinion, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe Opinion do
+	it { should belong_to(:user) }
+	it { should belong_to(:voting) }
+	it { should validate_presence_of(:description) }
 end

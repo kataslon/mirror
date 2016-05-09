@@ -12,12 +12,14 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'devise', '~> 3.5', '>= 3.5.1'
+gem 'faker'
 
 group :development, :test do
   gem 'byebug'
   gem 'rspec-rails', '~> 3.4', '>= 3.4.2'
   gem 'guard-rspec', '~> 4.6', '>= 4.6.4'
 	gem 'factory_girl_rails', '~> 4.7'
+	gem 'shoulda', '~> 3.5'
 end
 
 group :test do

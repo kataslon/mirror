@@ -6,4 +6,5 @@ class User < ActiveRecord::Base
 
   has_many :votings
   has_many :opinions
+
 end
