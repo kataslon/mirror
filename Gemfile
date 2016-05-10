@@ -12,10 +12,10 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'devise', '~> 3.5', '>= 3.5.1'
-gem 'faker'
+gem 'faker', '~> 1.6', '>= 1.6.3'
 
 group :development, :test do
-  gem 'byebug'
+  # gem 'byebug'
   gem 'rspec-rails', '~> 3.4', '>= 3.4.2'
   gem 'guard-rspec', '~> 4.6', '>= 4.6.4'
 	gem 'factory_girl_rails', '~> 4.7'
@@ -30,6 +30,9 @@ end
 group :development do
   gem 'spring', '~> 1.7', '>= 1.7.1'
   gem 'better_errors', git: 'https://github.com/manafire/better_errors.git', branch: 'allow_domain'
+  gem 'pry-rails', :group => :development
+  gem 'pry-byebug'
+  gem "binding_of_caller"
 end
 
 group :production do
