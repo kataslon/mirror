@@ -1,9 +1,6 @@
 FactoryGirl.define do
   factory :opinion do
-    user_id 1
-    voting_id 1
-    feature_id 1
-    description "MyString"
-    rate 1
+    description { Faker::Hipster.sentences(1) }
+    rate 0
   end
 end
