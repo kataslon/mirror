@@ -1,0 +1,7 @@
+<% @votings.each do |voting|%>
+	<%= voting %>
+	<%= link_to 'show', voting_path(voting) %></br>
+	<% voting.opinions.each do |opinion| %>
+		<%= opinion.description %></br>
+	<% end %>
+<% end %>
