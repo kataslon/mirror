@@ -1,0 +1,16 @@
+<header>
+		<nav>
+			<div class="nav-wrapper">
+				<%= link_to "who_am_i", root_path, class: "brand-logo"  %>
+				<ul id="nav-mobile" class="right hide-on-med-and-down">
+					<li>
+						<% if current_user %>
+							<%= current_user.email %>
+						<% else %>
+		          <%= link_to t('nav.log_in'), new_user_session_path %>
+						<% end %>
+					</li>
+				</ul>
+			</div>
+		</nav>
+</header>
