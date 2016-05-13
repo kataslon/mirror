@@ -1,0 +1,8 @@
+<%= form_for @voting do |voting| %>
+	<%= voting.label :polls_count %>
+	<%= voting.text_field :polls_count, default: 5 %>
+	<%= voting.label :description %>
+	<%= voting.text_field :description %>
+	<%= voting.hidden_field :user_id, value: current_user.id %>
+	<%= voting.submit %>
+<% end %>

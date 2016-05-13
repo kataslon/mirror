@@ -1,7 +1,9 @@
 <% @votings.each do |voting|%>
-	<%= voting %>
+	<%= voting %></br>
+	<%= voting.user_id %></br>
 	<%= link_to 'show', voting_path(voting) %></br>
 	<% voting.opinions.each do |opinion| %>
 		<%= opinion.description %></br>
 	<% end %>
 <% end %>
+<%= link_to 'New', new_voting_path %>
