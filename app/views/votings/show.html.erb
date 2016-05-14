@@ -1,2 +1,7 @@
-<%= @voting.description %>
-<%= @voting.polls_count %>
+<%= @voting.description %></br>
+<%= @voting.polls_count %></br>
+<% @voting.opinions.each do |opinion|%>
+	<%= opinion.description %></br>
+<% end %>
+<%= link_to 'back', votings_path %></br>
+

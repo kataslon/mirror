@@ -1,9 +1,29 @@
-<% @votings.each do |voting|%>
-	<%= voting %></br>
-	<%= voting.user_id %></br>
-	<%= link_to 'show', voting_path(voting) %></br>
-	<% voting.opinions.each do |opinion| %>
-		<%= opinion.description %></br>
-	<% end %>
-<% end %>
-<%= link_to 'New', new_voting_path %>
+<table class="bordered highlight">
+	<thead>
+		<tr>
+			<th>Дата создания</th>
+			<th>Количество опрашиваемых</th>
+			<th>Примечание</th>
+			<th>Навигация</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @votings.each do |voting|%>
+			<tr>
+				<td><%= voting.created_at %></td>
+				<td>><%= voting.polls_count %></td>
+				<td><%= voting.description %></td>
+				<td>
+					<%= link_to(voting_path(voting), class: "waves-effect waves-light btn-floating") do %>
+	          <i class="material-icons">visibility</i>
+	        <% end %>
+	        <%= link_to(edit_voting_path(voting), class: "waves-effect waves-light btn-floating") do %>
+	          <i class="material-icons">edit</i>
+	        <% end %>
+        </td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
+
+<%= link_to 'New', new_voting_path, class: "waves-effect waves-light btn" %>
