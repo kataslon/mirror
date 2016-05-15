@@ -9,6 +9,8 @@ RSpec.describe VotingsController, type: :controller do
 		let!(:opinion) { create(:opinion, voting_id: voting.id, user_id: invited_user.id) }
 	end
 
+	render_views
+
 	context 'when user is logged in' do
 		before :each do
 			sign_in user
@@ -61,6 +63,7 @@ RSpec.describe VotingsController, type: :controller do
 				it 'renders edit template' do
 					get :edit, id: voting
 					expect(response).to render_template :edit
+					assert_select "title", "Mirror | edit voting by initiator"
 				end
 			end
 
@@ -101,6 +104,57 @@ RSpec.describe VotingsController, type: :controller do
 
 	context 'when user is not logged in' do
 		describe 'and user is invited' do
+			
+			describe 'GET#index' do
+				it 'require login' do
+					get :index
+					expect(response).to redirect_to new_user_session_path
+				end
+			end
+
+			describe 'GET#new' do
+				it 'require login' do
+					get :new
+					expect(response).to redirect_to new_user_session_path
+				end
+			end
+
+			describe 'POST#create' do
+				it 'require login' do
+					get :new
+					expect(response).to redirect_to new_user_session_path
+				end
+			end
+
+			describe 'GET#show' do
+				it 'renders show template' do
+					get :show, id: voting
+					expect(response).to redirect_to new_user_session_path
+				end
+			end
+
+			describe 'GET#edit' do
+				it 'renders edit template' do
+					get :edit, id: voting
+					expect(response).to render_template :edit
+					assert_select "title", "Mirror | opinions by invited user"
+				end
+			end
+
+			describe 'PATCH#update' do
+				it 'require login' do
+					get :new
+					expect(response).to redirect_to new_user_session_path
+				end
+			end
+
+			describe 'DELETE#destroy' do
+				it 'renders show template' do
+					get :show, id: voting
+					expect(response).to redirect_to new_user_session_path
+				end
+			end
+
 		end
 	end
 

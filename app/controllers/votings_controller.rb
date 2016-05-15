@@ -1,7 +1,7 @@
 class VotingsController < ApplicationController
 
 	before_action :set_voting, except: [:index, :new, :create]
-	before_action :authenticate_user!
+	before_action :authenticate_user!, except: [:edit]
 
 	def index
 		@votings = current_user.votings

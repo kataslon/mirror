@@ -1,3 +1,5 @@
+<% provide(:title, "creating new voting by initiator") %>
+<h2>Новое голосование</h2>
 <%= form_for @voting do |voting| %>
 	<%= voting.label :polls_count %>
 	<%= voting.text_field :polls_count, default: 5 %>
