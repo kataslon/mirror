@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   resources :votings do
     resources :opinions
+    resources :inviteds
   end
 
   # Example of regular route:

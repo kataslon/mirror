@@ -11,10 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160512185751) do
+ActiveRecord::Schema.define(version: 20160515190552) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "inviteds", force: :cascade do |t|
+    t.integer  "voting_id"
+    t.string   "name"
+    t.string   "email"
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "opinions", force: :cascade do |t|
     t.integer  "user_id"
@@ -49,10 +58,11 @@ ActiveRecord::Schema.define(version: 20160512185751) do
   create_table "votings", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "environment_id"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.integer  "polls_count",    default: 5
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.integer  "polls_count",     default: 5
     t.string   "description"
+    t.text     "invitation_text"
   end
 
 end

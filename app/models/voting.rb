@@ -1,6 +1,7 @@
 class Voting < ActiveRecord::Base
 	belongs_to :user
 	has_many :opinions
+	has_many :inviteds
 
 	validates :polls_count, numericality: { greater_than: 4 }
 
