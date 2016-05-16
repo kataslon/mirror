@@ -14,7 +14,7 @@ class VotingsController < ApplicationController
 	def create
 		@voting = Voting.create(voting_params)
 		if @voting.save
-			redirect_to votings_url
+			redirect_to edit_voting_url(@voting)
 		else
 			redirect_to new_voting_url
 		end

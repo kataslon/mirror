@@ -1,3 +1,18 @@
 <% provide(:title, "edit voting by initiator") %>
-<%= @voting.polls_count %>
-<%= @voting.description %>
+<%= link_to 'back', votings_path %>
+<p> Вы создали опрос для <%= @voting.polls_count %> участников. Теперь Вам нужно разослать следующее ниже приглашение со ссылкой на форму голосования Вашим друзьям по имейлу, в социальных сетях, или любым другим удобным способом, дождаться результатов голосования и узнать всю правду о себе :) </p>
+<%= form_for @voting do |voting| %>
+	<%= voting.label :invitation_text, "Текст запроса" %>
+	<%= voting.text_field :invitation_text, value: "Привет, друже, я #{User.find_by(id: @voting.user_id).email} оцени меня, пожалуйста вот по этой ссылочке #{invitation_link(@voting)}" %>
+	<% @voting.polls_count.times do %>
+		<%= voting.fields_for :inviteds do |invited| %>
+			<%= invited.label :name %>
+			<%= invited.text_field :name %>
+			<%= invited.label :email %>
+			<%= invited.text_field :email %>
+			<%= invited.label :description %>
+			<%= invited.text_field :description %>
+		<% end %>
+	<% end %>
+	<%= voting.submit %>
+<% end %>

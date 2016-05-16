@@ -7,4 +7,8 @@ module VotingsHelper
 			'opinions_form'
 		end
 	end
+
+	def invitation_link(voting)
+		"http://localhost:3000/votings/" + "#{voting.id}" + "/edit"
+	end
 end

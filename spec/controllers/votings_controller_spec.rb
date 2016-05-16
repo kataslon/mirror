@@ -47,7 +47,7 @@ RSpec.describe VotingsController, type: :controller do
 
 					it 'redirect to index template' do
 						post :create, voting: { description: 'first voting' }
-						expect(response).to redirect_to votings_path
+						expect(response).to redirect_to edit_voting_path(Voting.last)
 					end
 				end
 			end
