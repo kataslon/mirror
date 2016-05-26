@@ -32,7 +32,7 @@ class VotingsController < ApplicationController
   def update
     @voting.update_attributes(voting_params)
     if @voting.save
-      current_user ? (redirect_to votings_url) : (redirect_to edit_voting_url(@voting))
+      current_user ? (redirect_to votings_url) : (redirect_to pages_thanks_page_path)
     else
       redirect_to edit_voting_url(@voting)
     end
