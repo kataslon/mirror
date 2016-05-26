@@ -1,52 +1,55 @@
 class VotingsController < ApplicationController
 
-	before_action :set_voting, except: [:index, :new, :create]
-	before_action :authenticate_user!, except: [:edit]
+  before_action :set_voting, except: [:index, :new, :create]
+  before_action :authenticate_user!, except: [:edit, :update]
 
-	def index
-		@votings = current_user.votings
-	end
+  def index
+    @votings = current_user.votings
+  end
 
-	def new
-		@voting = Voting.new
-	end
+  def new
+    @voting = Voting.new
+  end
 
-	def create
-		@voting = Voting.create(voting_params)
-		if @voting.save
-			redirect_to edit_voting_url(@voting)
-		else
-			redirect_to new_voting_url
-		end
-	end
+  def create
+    @voting = Voting.create(voting_params)
+    if @voting.save
+      redirect_to edit_voting_url(@voting)
+    else
+      redirect_to new_voting_url
+    end
+  end
 
-	def show
-	end
+  def show
+  end
 
-	def edit
-	end
+  def edit
+    @voting.polls_count.times do
+      @voting.opinions.build
+    end
+  end
 
-	def update
-		@voting.update_attributes(voting_params)
-		if @voting.save
-			redirect_to votings_url
-		else
-			redirect_to edit_voting_url(@voting)
-		end
-	end
+  def update
+    @voting.update_attributes(voting_params)
+    if @voting.save
+      current_user ? (redirect_to votings_url) : (redirect_to edit_voting_url(@voting))
+    else
+      redirect_to edit_voting_url(@voting)
+    end
+  end
 
-	def destroy
-		@voting.destroy
-		redirect_to votings_url
-	end
+  def destroy
+    @voting.destroy
+    redirect_to votings_url
+  end
 
-	private
+  private
 
-	def set_voting
-		@voting = Voting.find(params[:id])
-	end
+  def set_voting
+    @voting = Voting.find(params[:id])
+  end
 
-	def voting_params
-		params.require(:voting).permit(:polls_count, :description, :user_id)
-	end
+  def voting_params
+    params.require(:voting).permit(:polls_count, :description, :user_id, opinions_attributes: [:description])
+  end
 end
