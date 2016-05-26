@@ -1,10 +1,8 @@
 <% provide(:title, "opinions by invited user") %>
 <h2>Сбор мнений</h2>
 <%= form_for @voting do |voting| %>
-	<% @voting.polls_count.times do %>
-		<%= voting.fields_for :opinions do |opinion| %>
-			<%= opinion.text_field :description %>
-		<% end %>
-	<% end %>
-	<%= voting.submit %>
+    <%= voting.fields_for :opinions do |opinion| %>
+      <%= opinion.text_field :description %>
+    <% end %>
+  <%= voting.submit %>
 <% end %>
